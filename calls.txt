@@ -1,0 +1,4 @@
+1. node liri spotify "Wake me up"
+2. node liri search-concerts "Armin Van Buuren"
+3. node liri search-movies "Titanic"
+4. node liri feeling-lucky
