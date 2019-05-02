@@ -1,0 +1,27 @@
+{
+  "name": "LIRI-Bot",
+  "version": "1.0.0",
+  "description": "LIRI bot is a Language Interpretation and Recognition Interface app. LIRI will be a command line node app that takes in parameters and returns the user data based on the search query.",
+  "main": "keys.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waqar-habib/LIRI-Bot.git"
+  },
+  "keywords": [],
+  "author": "Waqar Habib",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/waqar-habib/LIRI-Bot/issues"
+  },
+  "homepage": "https://github.com/waqar-habib/LIRI-Bot#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^7.0.0",
+    "node-spotify-api": "^1.1.1",
+    "omdb-client": "^2.0.0",
+    "ticketmaster": "^2.0.4"
+  }
+}
