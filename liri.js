@@ -19,6 +19,8 @@ const spotify = new Spotify({
 var searchOperator = process.argv[2];
 var input = process.argv[3];
 
+// Function that'll execute if the user enters "spotify" as the operator
+
 function searchSpotify() {
     console.log("Please wait while I search for your query...");
     spotifySong = input;
