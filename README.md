@@ -23,7 +23,7 @@ LIRI bot is a Language Interpretation and Recognition Interface app. LIRI will b
 
 ## Demo
 
-![](LIRI-Demo.mov)
+![](LIRI-Demo.gif)
 
 ## Credits
 
