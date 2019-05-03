@@ -28,7 +28,7 @@ For some odd reason, Github is not displaying my demo file even when it's a GIF 
 ## Credits
 
 - A huge thanks to:
-    1. all my TAs, especially Brandon Gatlin and Nick Sladden for helping me work out the kinks in the app. Also, to Latish McNeel for solving the pesky "circular reference" error
+    1. all my TAs, especially Brandon Gatlin and Nick Sladden for helping me work out the kinks in the app. Also, to Latisha McNeel for solving the pesky "circular reference" error
     2. Anuj Pant, my tutor who took time out of his busy schedule to helping solve the ticketmaster object problem.
 
 ## Copyrights
