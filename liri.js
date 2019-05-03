@@ -4,10 +4,13 @@ var Spotify = require("node-spotify-api");
 var Ticketmaster = require("ticketmaster");
 var fs = require("fs");
 
+// Pulling the API keys from .env file
+
 var spotify = new Spotify({
     id: process.env.spotify_ID,
     secret: process.env.spotify_secret
 });
+
 var ticketmaster = new Ticketmaster({
     id: process.env.ticketmaster_ID,
     secret: process.env.ticketmaster_secret
@@ -25,7 +28,7 @@ var input = process.argv.slice(3).join(" ");
 // Function that'll execute if the user enters "spotify" as the operator
 
 function searchSpotify() {
-    console.log("Please wait while I search for your query...");
+
     spotifySong = input;
     spotify.search({
         type: 'track',
@@ -35,7 +38,6 @@ function searchSpotify() {
             return console.log('Error occurred: ' + err);
         } else {
             
-            console.log('Here is what I found for: ' + '"' + input + '"');
             // Print Artist Name 
             console.log('Artist: ' + JSON.stringify(data.tracks.items[0].album.artists[0].name));
 
@@ -51,7 +53,8 @@ function searchSpotify() {
     });
 }
 
-// OMDB
+// Function that'll execute if the user enters "omdb" as the operator
+
 var queryUrl = "http://www.omdbapi.com/?t="+ input + "&apikey=" + omdbID;
 
 function getMovieInfo() {
@@ -60,8 +63,7 @@ function getMovieInfo() {
 
     axios.get(queryUrl).then(
         function(response) {
-            console.log("Please wait while I search for your query...");
-            console.log('Here is what I found for: ' + '"' + input + '"');
+
             // Title
             console.log('Title: ' + response.data.Title);
             // Year
@@ -85,11 +87,10 @@ function getMovieInfo() {
     });
 }
 
-// Ticketmaster
+// Function that'll execute if the user enters "ticketmaster" as the operator
 
 function getEventsFromTM () {
-    console.log("Please wait while I search for your query...");
-    console.log('Here is what I found for: ' + '"' + input + '"');
+
     var queryUrl = 'https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=' + ticketmaster.apikey.id + '&keyword=' + input;
 
     axios.get(queryUrl).then(
@@ -109,6 +110,8 @@ function getEventsFromTM () {
     });        
 }
 
+// Function that'll execute if the user enters "feeling-lucky" as the operator
+
 function getLucky () {
     var fs = require("fs");
     fs.readFile('getLucky.txt', (err, data) => {
@@ -120,14 +123,32 @@ function getLucky () {
       });
 }
 
+// Conditionals to check for the search operator so LIRI can execute the correct function
+
 if (searchOperator === 'spotify') {
+    
+    console.log("Please wait while I search for your query...");
+    console.log('Here is what I found for: ' + '"' + input + '"');
     searchSpotify();
+
 } else if (searchOperator === 'ticketmaster') {
+
+    console.log("Please wait while I search for your query...");
+    console.log('Here is what I found for: ' + '"' + input + '"');
     getEventsFromTM();
+
 } else if (searchOperator === 'omdb') {
+
+    console.log("Please wait while I search for your query...");
+    console.log('Here is what I found for: ' + '"' + input + '"');
     getMovieInfo();
+
 } else if (searchOperator === 'feeling-lucky') {
+
+    console.log('Here\'s cool EDM song you might enjoy');
     getLucky();
+
 } else {
-    console.log("Invalid Command Provided");
+
+    console.log("Sorry, I didn't get that. Please try again.");
 }
