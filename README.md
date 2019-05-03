@@ -23,7 +23,7 @@ LIRI bot is a Language Interpretation and Recognition Interface app. LIRI will b
 
 ## Demo
 
-![](LIRI-demo.gif)
+For some odd reason, Github is not displaying my demo file even when it's a GIF image file. If you would like to view a demo please click on "LIRI-Demo.gif" to view it in your browser or, download "LIRI-Demo.mov" to view on your machine. 
 
 ## Credits
 
