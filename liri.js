@@ -51,7 +51,6 @@ function searchSpotify() {
     });
 }
 
-
 // OMDB
 var queryUrl = "http://www.omdbapi.com/?t="+ input + "&apikey=" + omdbID;
 
@@ -80,7 +79,6 @@ function getMovieInfo() {
             // Actors
             console.log('Actors: ' + response.data.Actors);
 
-
         }) 
         .catch(function (error){
             console.log(error);
@@ -92,22 +90,35 @@ function getMovieInfo() {
 function getEventsFromTM () {
     console.log("Please wait while I search for your query...");
     console.log('Here is what I found for: ' + '"' + input + '"');
-    var queryUrl = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=' + ticketmaster.apikey.id + '&keyword=' + input;
+    var queryUrl = 'https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=' + ticketmaster.apikey.id + '&keyword=' + input;
 
     axios.get(queryUrl).then(
         function(response) {
-            // Make separate clg for each of the reqd items here
+            // Venue Name
             console.log('Venue: ' + response.data._embedded.events[0]._embedded.venues[0].name);
+
+            // Address - Street, City, State, Zip
+            console.log('Address: ' + response.data._embedded.events[0]._embedded.venues[0].address.line1 + ', ' + response.data._embedded.events[0]._embedded.venues[0].city.name + ', ' + response.data._embedded.events[0]._embedded.venues[0].state.name + ' ' + response.data._embedded.events[0]._embedded.venues[0].postalCode);
+
+            // Date of Event
             console.log('Date of Event: ' + response.data._embedded.events[0].dates.start.localDate);
-            //console.log('Venue:');
-            //venues.city.name, .country.name, .name
-            
+
         })
         .catch(function (error){
             console.log(error);
     });        
 }
 
+function getLucky () {
+    var fs = require("fs");
+    fs.readFile('getLucky.txt', (err, data) => {
+        if (err) throw err;
+        var dataArray = data.toString().split(',');
+        var inputType = dataArray[0];
+        input = dataArray[1];
+        searchSpotify();
+      });
+}
 
 if (searchOperator === 'spotify') {
     searchSpotify();
@@ -115,6 +126,8 @@ if (searchOperator === 'spotify') {
     getEventsFromTM();
 } else if (searchOperator === 'omdb') {
     getMovieInfo();
+} else if (searchOperator === 'feeling-lucky') {
+    getLucky();
 } else {
     console.log("Invalid Command Provided");
 }
